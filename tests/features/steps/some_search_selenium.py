@@ -30,15 +30,14 @@ def step_impl(context):
 
 
 @then(u'search for "{search_string}")')
-def step_impl(context, input):
-    print(input)
+def step_impl(context, search_string):
     input_bar = context.driver.find_element(By.ID, "search_form_input_homepage")
     input_bar.click()
-    input_bar.send_keys(input)
+    input_bar.send_keys(search_string)
     search_button = context.driver.find_element(By.ID, "search_button_homepage")
     search_button.click()
     time.sleep(10)
-    context.driverWait.until(expected_conditions.title_is(input + " at DuckDuckGo"))
+    context.driverWait.until(expected_conditions.title_is(search_string + " at DuckDuckGo"))
 
 @then(u'close browser')
 def step_impl(context):
