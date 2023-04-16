@@ -49,17 +49,27 @@ source venv/bin/activate
 ```
 pip install -r requirements.txt
 ```
+If this does not work, you can install requirements with this.
+```
+venv\Scripts\python.exe -m pip install -r requirements.txt
+```
 
 5. Run the script:
-
-To run all test cases and also generate the test reports.
-```
-pytest --browser=firefox --html=reports/report.html --self-contained-html
-```
 
 To you only want to run all test cases.
 ```
 pytest --browser=firefox
+```
+
+**NOTE:** You may require installing pytest-html in order to enable pytest
+to receive --html as a valid argument
+```
+pip install pytest-html
+```
+
+To run all test cases and also generate the test reports.
+```
+pytest --browser=firefox --html=reports/report.html --self-contained-html
 ```
 
 **Note:**
