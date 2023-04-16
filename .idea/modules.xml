@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/southerCode.iml" filepath="$PROJECT_DIR$/.idea/southerCode.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/SmallTestingFramework.iml" filepath="$PROJECT_DIR$/.idea/SmallTestingFramework.iml" />
     </modules>
   </component>
 </project>
