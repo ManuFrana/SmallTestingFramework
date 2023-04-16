@@ -1,6 +1,6 @@
 ## December Labs Get in touch testCase
 
-###What is this?
+### What is this?
 I took the liberty of generating a small testing framework with Selenium to execute the handwritten test case.
 That I wrote in "Prueba tecnica funcional - Primera parte"
 
