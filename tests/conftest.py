@@ -1,4 +1,3 @@
-import os.path
 
 import pytest as pytest
 from selenium import webdriver
@@ -8,20 +7,22 @@ from webdriver_manager.chrome import ChromeDriverManager
 from webdriver_manager.firefox import GeckoDriverManager
 
 
-@pytest.fixture(scope="class")
+@pytest.fixture(scope="function")
 def setup(request, browser):
     warnings.filterwarnings("ignore", category=DeprecationWarning)
     if browser == 'chrome':
-        driver = webdriver.Chrome(executable_path=ChromeDriverManager().install())
+        options = webdriver.ChromeOptions()
+        options.add_argument("--start-maximized")
+        driver = webdriver.Chrome(executable_path=ChromeDriverManager().install(), options=options)
     elif browser == 'firefox':
-        driver = webdriver.Firefox(executable_path=GeckoDriverManager().install())
+        options = webdriver.FirefoxOptions()
+        options.add_argument("--width=1440")
+        options.add_argument("--height=1000")
+        driver = webdriver.Firefox(executable_path=GeckoDriverManager().install(), options=options)
     else:
         raise AssertionError("Invalid browser name:" + browser)
-    options = webdriver.ChromeOptions()
-    #options.add_experimental_option('prefs', {'intl.accept_languages': 'en,en_US'})
     driverWait = WebDriverWait(driver, 3)
-    driver.get("https://duckduckgo.com/")
-    driver.maximize_window()
+    driver.get("https://inhouse.decemberlabs.com/")
     request.cls.driver = driver
     request.cls.wait = driverWait
     yield request.cls.driver
@@ -29,13 +30,13 @@ def setup(request, browser):
 
 
 def pytest_addoption(parser):
-    parser.addoption("--browser", action="store", default="chrome", help="specify the browser you want to use (chrome, firefox, edge)")
+    parser.addoption("--browser", action="store", default="chrome", help="specify the browser you want to use (chrome, firefox)")
 
 @pytest.fixture(scope="class", autouse=True)
 def browser(request):
     return request.config.getoption("--browser")
 
 def pytest_html_report_title(report):
-    report.title = "SoutherCode Tests Reports"
+    report.title = "December Labs Tests Reports"
 
 
