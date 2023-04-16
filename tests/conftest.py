@@ -36,6 +36,7 @@ def pytest_addoption(parser):
 def browser(request):
     return request.config.getoption("--browser")
 
+@pytest.hookimpl(optionalhook=True)
 def pytest_html_report_title(report):
     report.title = "December Labs Tests Reports"
 
